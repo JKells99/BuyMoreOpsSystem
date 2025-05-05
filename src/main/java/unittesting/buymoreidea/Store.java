@@ -1,18 +1,8 @@
 package unittesting.buymoreidea;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
-@AllArgsConstructor
 
-@NoArgsConstructor
 public class Store {
     private String storeName;
     private String storeAddress;
@@ -29,7 +19,59 @@ public class Store {
         this.employees = new ArrayList<>();
         this.inventoryItems = new ArrayList<>();
     }
+    public Store() {
+        this.departments = new ArrayList<>();
+        this.employees = new ArrayList<>();
+        this.inventoryItems = new ArrayList<>();
+    }
 
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getStoreAddress() {
+        return storeAddress;
+    }
+
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress;
+    }
+
+    public String getStorePhoneNumber() {
+        return storePhoneNumber;
+    }
+
+    public void setStorePhoneNumber(String storePhoneNumber) {
+        this.storePhoneNumber = storePhoneNumber;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public List<InventoryItem> getInventoryItems() {
+        return inventoryItems;
+    }
+
+    public void setInventoryItems(List<InventoryItem> inventoryItems) {
+        this.inventoryItems = inventoryItems;
+    }
 
     public void addDepartment(Department department) {
         departments.add(department);
@@ -49,15 +91,7 @@ public class Store {
     public void removeInventoryItem(InventoryItem inventoryItem) {
         inventoryItems.remove(inventoryItem);
     }
-    public void displayStoreInfo() {
-        System.out.println("Store Name: " + storeName);
-        System.out.println("Store Address: " + storeAddress);
-        System.out.println("Store Phone Number: " + storePhoneNumber);
-        System.out.println("Departments: ");
-        departments.forEach(department -> System.out.println(" - " + department.getDepartmentName()));;
-        System.out.println("Employees: ");
-        employees.forEach(employee -> System.out.println(" - " + employee.getEmployeeFirstName() + " " + employee.getEmployeeLastName()));
-    }
+
 
 
 }
