@@ -4,7 +4,7 @@ Welcome to the backend system for **Buy More Ops**, a fictional employee and sec
 
 ## 🚀 Tech Stack
 
-- **Java 17**
+- **Java 23**
 - **Spring Boot**
 - **Spring Data JPA**
 - **MySQL**
