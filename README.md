@@ -25,10 +25,11 @@ This project demonstrates the following concepts:
 
 - ## 🔐 Authentication Flow (Simplified)
 
-- Users register with a **plain-text password**
+- Users register with a **plain-text password and username**
 - Password is hashed using **BCrypt** before being saved
 - During login, we compare the raw password against the hashed one
 - If it matches, the login is accepted (for now, just a success response)
+- for login I am using just a LoginDTO which will just pass in the username and password from the user OBJ
 
 > _Note: No JWTs or sessions are used right now — we're focusing on **manual password hashing and login checks**._
 
@@ -36,13 +37,13 @@ This project demonstrates the following concepts:
 
 - **User** → Represents all system users
 - **Employee** → Extends a user to represent Buy More staff
-- **Agent** → Represents government operatives (one-to-one with User)
+- **Agent** → Represents government operatives, Extends a User 
 - **Department** → Has many Employees (one-to-many)
 - **Missions** → Can involve many Agents (many-to-many)
 
-> These relationships demonstrate all major JPA relationship types:
-> - One-to-One (User → Agent)
+
 > - One-to-Many (Department → Employees)
+> - One To Many ( HQ -> Doors)
 > - Many-to-Many (Agent ↔ Missions)
 
 ## 🧪 Example API Endpoints
