@@ -1,7 +1,8 @@
-package unittesting.buymoreidea;
+package unittesting.buymoreidea.buymore;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import unittesting.buymoreidea.cia.SpyBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,13 @@ public class Store {
     private List<Department> departments = new ArrayList<>();
     private List<Employee> employees = new ArrayList<>();
     private List<InventoryItem> inventoryItems = new ArrayList<>();
+    private SpyBase spyBase;
 
     public Store(String storeName, String storeAddress, String storePhoneNumber) {
         this.storeName = storeName;
         this.storeAddress = storeAddress;
         this.storePhoneNumber = storePhoneNumber;
+        this.spyBase = new SpyBase();
     }
 
     public Store() {}
@@ -36,6 +39,14 @@ public class Store {
     public void setEmployees(List<Employee> employees) { this.employees = employees; }
     public List<InventoryItem> getInventoryItems() { return inventoryItems; }
     public void setInventoryItems(List<InventoryItem> inventoryItems) { this.inventoryItems = inventoryItems; }
+
+    public SpyBase getSpyBase() {
+        return spyBase;
+    }
+
+    public void setSpyBase(SpyBase spyBase) {
+        this.spyBase = spyBase;
+    }
 
     public void addDepartment(Department department) {
         validateNotNull(department, "Department");
@@ -78,5 +89,18 @@ public class Store {
 
     private void validateNotNull(Object obj, String name) {
         if (obj == null) throw new IllegalArgumentException(name + " cannot be null");
+    }
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "storeName='" + storeName + '\'' +
+                ", storeAddress='" + storeAddress + '\'' +
+                ", storePhoneNumber='" + storePhoneNumber + '\'' +
+                ", departments=" + departments +
+                ", employees=" + employees +
+                ", inventoryItems=" + inventoryItems +
+                ", spyBase=" + spyBase +
+                '}';
     }
 }

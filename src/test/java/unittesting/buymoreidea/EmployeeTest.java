@@ -4,13 +4,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import unittesting.buymoreidea.buymore.Employee;
 
 public class EmployeeTest {
 
     Employee employee;
     @BeforeEach
     public void setUp() {
-        employee = new Employee("John", "Doe", "1234567890", "j@j.com", "123 Main St", "Manager", 50000);
+        employee = new Employee("jkells","password","John", "Doe", "1234567890", "j@j.com", "123 Main St", "Manager", 50000);
 
 
     }

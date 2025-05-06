@@ -1,6 +1,4 @@
-package unittesting.buymoreidea;
-
-;
+package unittesting.buymoreidea.buymore;
 
 
 public class InventoryItem {
@@ -59,5 +57,16 @@ public class InventoryItem {
 
     public void setItemQuantity(int itemQuantity) {
         this.itemQuantity = itemQuantity;
+    }
+
+    @Override
+    public String toString() {
+        return "InventoryItem{" +
+                "department=" + department +
+                ", itemName='" + itemName + '\'' +
+                ", itemDescription='" + itemDescription + '\'' +
+                ", itemPrice=" + itemPrice +
+                ", itemQuantity=" + itemQuantity +
+                '}';
     }
 }

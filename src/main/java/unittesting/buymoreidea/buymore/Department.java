@@ -1,6 +1,4 @@
-package unittesting.buymoreidea;
-
-
+package unittesting.buymoreidea.buymore;
 
 
 public class Department {
@@ -19,5 +17,12 @@ public class Department {
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "departmentName='" + departmentName + '\'' +
+                '}';
     }
 }

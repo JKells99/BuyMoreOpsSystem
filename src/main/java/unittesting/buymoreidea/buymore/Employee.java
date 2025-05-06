@@ -1,9 +1,9 @@
-package unittesting.buymoreidea;
+package unittesting.buymoreidea.buymore;
 
 
+import unittesting.buymoreidea.User;
 
-
-public class Employee {
+public class Employee extends User {
     private String employeeFirstName;
     private String employeeLastName;
     private String employeePhoneNumber;
@@ -12,7 +12,8 @@ public class Employee {
     private String employeePosition;
     private double employeeSalary;
 
-    public Employee(String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
+    public Employee(String userName, String password, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
+        super(userName, password);
         this.employeeFirstName = employeeFirstName;
         this.employeeLastName = employeeLastName;
         this.employeePhoneNumber = employeePhoneNumber;
@@ -93,4 +94,5 @@ public class Employee {
                 ", employeeSalary=" + employeeSalary +
                 '}';
     }
+
 }

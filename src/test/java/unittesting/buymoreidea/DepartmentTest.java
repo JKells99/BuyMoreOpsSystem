@@ -2,6 +2,7 @@ package unittesting.buymoreidea;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import unittesting.buymoreidea.buymore.Department;
 
 
 public class DepartmentTest {
