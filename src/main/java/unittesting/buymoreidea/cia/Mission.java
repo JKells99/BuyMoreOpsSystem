@@ -66,6 +66,17 @@ public class Mission {
         this.agentsInvolved.remove(agent);
     }
 
+    public void printMissionDetails() {
+        System.out.println("Mission ID: " + missionId);
+        System.out.println("Mission Name: " + missionName);
+        System.out.println("Mission Description: " + missionDescription);
+        System.out.println("Mission Status: " + missionStatus);
+        System.out.println("Agents Involved: ");
+        for (Agent agent : agentsInvolved) {
+            System.out.println(agent);
+        }
+    }
+
     @Override
     public String toString() {
         return "Mission{" +

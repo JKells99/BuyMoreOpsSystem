@@ -22,12 +22,13 @@ public class BuyMoreSystem {
         InventoryItem inventoryItem3 = new InventoryItem(department, "Tablet","Tablet Computer", 300.00, 15);
         InventoryItem inventoryItem4 = new InventoryItem(department, "Monitor","Computer Monitor", 200.00, 5);
         SpyBase spyBase = new SpyBase("USA", "TOP Secret", "Burbank Station");
+        Agent agent2 = new Agent("UserName1","Passwor1d","Mark","OPS","Ground BRanch");
+
         Agent agent = new Agent("UserName","Password","Darude","OPS","STG");
         Door door = new Door(11, "Main Entrance", "Open");
         Door door2 = new Door(12, "Back Entrance", "Closed");
         Mission mission = new Mission(1123, "Description of mission 1", "2023-10-01", "2023-10-31");
 
-        agent.addMission(mission);
         store.setSpyBase(spyBase);
         store.addDepartment(department);
         store.addDepartment(department2);
@@ -36,12 +37,16 @@ public class BuyMoreSystem {
         store.addInventoryItem(inventoryItem2);
         store.addInventoryItem(inventoryItem3);
         store.addInventoryItem(inventoryItem4);
+        mission.addAgent(agent);
+        mission.addAgent(agent2);
+        mission.printMissionDetails();
 
         spyBase.addAgent(agent);
         spyBase.addDoor(door);
         spyBase.addDoor(door2);
         spyBase.openAllDoors();
         spyBase.generateReport();
+
 
 
 //        System.out.println(store.getEmployees());;

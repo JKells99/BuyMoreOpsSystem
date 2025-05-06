@@ -1,12 +1,15 @@
 package unittesting.buymoreidea;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class User {
     private String userName;
     private String password;
 
     public User(String userName, String password) {
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         this.userName = userName;
-        this.password = password;
+        this.password = hashedPassword;
     }
 
     public User() {
