@@ -56,5 +56,42 @@ public class AgentTest {
         assert agent.getUnitName() == null;
     }
 
+    // Give me a assert not null test
+    @Test
+    public void testAgentNotNull() {
+        Agent agent = new Agent("UserName", "Password", "Sandstorm", "Field Ops", "SOG");
+        assert agent.getUserName() != null;
+        assert agent.getCodeName() != null;
+        assert agent.getSpecialization() != null;
+        assert agent.getUnitName() != null;
+    }
+
+    // Assert True test
+    @Test
+    public void testAgentTrue() {
+        Agent agent = new Agent("UserName", "Password", "Sandstorm", "Field Ops", "SOG");
+        assert agent.getUserName().equals("UserName");
+        assert agent.getCodeName().equals("Sandstorm");
+        assert agent.getSpecialization().equals("Field Ops");
+        assert agent.getUnitName().equals("SOG");
+    }
+
+    // assertThrows test
+    @Test
+    public void testAgentThrows() {
+        Agent agent = new Agent("UserName", "Password", "Sandstorm", "Field Ops", "SOG");
+        try {
+            agent.setUserName(null);
+        } catch (IllegalArgumentException e) {
+            assert e.getMessage().equals("UserName cannot be null");
+        }
+        try {
+            agent.setPassword(null);
+        } catch (IllegalArgumentException e) {
+            assert e.getMessage().equals("Password cannot be null");
+        }
+    }
+
+
 
 }
