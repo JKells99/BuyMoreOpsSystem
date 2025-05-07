@@ -1,10 +1,9 @@
-package unittesting.buymoreidea;
+package unittesting.buymoreidea.buymore;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import unittesting.buymoreidea.buymore.Employee;
 
 public class EmployeeTest {
 
