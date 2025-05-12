@@ -21,6 +21,7 @@ public class SpyBase {
         this.doors = new ArrayList<Door>();
         this.agents = new ArrayList<Agent>();
     }
+
     public SpyBase() {
     }
 
@@ -63,85 +64,140 @@ public class SpyBase {
     public void setAgents(List<Agent> agents) {
         this.agents = agents;
     }
+
     // method to add a door
     public void addDoor(Door door) {
-        if (door == null) {
-            throw new IllegalArgumentException("Door cannot be null");
+        try {
+            if (door == null) {
+                throw new IllegalArgumentException("Door cannot be null");
+            }
+            if (doors.contains(door)) {
+                throw new IllegalArgumentException("Door already exists");
+            }
+            doors.add(door);
+            log.info("Added Door: {}", door);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
         }
-        if (doors.contains(door)) {
-            throw new IllegalArgumentException("Door already exists");
-        }
-        doors.add(door);
     }
+
     // method to remove a door
     public void removeDoor(Door door) {
-        if (door == null) {
-            throw new IllegalArgumentException("Door cannot be null");
+        try {
+            if (door == null) {
+                throw new IllegalArgumentException("Door cannot be null");
+            }
+            if (!doors.contains(door)) {
+                throw new IllegalArgumentException("Door does not exist");
+            }
+            doors.remove(door);
+            log.info("Removed Door: {}", door);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
         }
-        if (!doors.contains(door)) {
-            throw new IllegalArgumentException("Door does not exist");
-        }
-        doors.remove(door);
     }
+
     // method to add an agent
     public void addAgent(Agent agent) {
-        if (agent == null) {
-            throw new IllegalArgumentException("Agent cannot be null");
+        try {
+            if (agent == null) {
+                throw new IllegalArgumentException("Agent cannot be null");
+            }
+            if (agents.contains(agent)) {
+                throw new IllegalArgumentException("Agent already exists");
+            }
+            agents.add(agent);
+            log.info("Added Agent: {}", agent);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
         }
-        if (agents.contains(agent)) {
-            throw new IllegalArgumentException("Agent already exists");
-        }
-        agents.add(agent);
     }
+
     // method to remove an agent
     public void removeAgent(Agent agent) {
-        if (agent == null) {
-            throw new IllegalArgumentException("Agent cannot be null");
+        try {
+            if (agent == null) {
+                throw new IllegalArgumentException("Agent cannot be null");
+            }
+            if (!agents.contains(agent)) {
+                throw new IllegalArgumentException("Agent does not exist");
+            }
+            agents.remove(agent);
+            log.info("Removed Agent: {}", agent);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
         }
-        if (!agents.contains(agent)) {
-            throw new IllegalArgumentException("Agent does not exist");
-        }
-        agents.remove(agent);
     }
+
     public void closeAllDoors() {
-        for (Door door : doors) {
-            log.info("Closing door #{}", door.getDoorNumber());
-            door.setDoorStatus("Closed");
+        try {
+            for (Door door : doors) {
+                log.info("Closing door #{}", door.getDoorNumber());
+                door.setDoorStatus("Closed");
+            }
+        } catch (Exception e) {
+            log.error("Error closing doors: {}", e.getMessage());
+            throw new RuntimeException(e);
         }
     }
+
     public void openAllDoors() {
-        for (Door door : doors) {
-            door.setDoorStatus("Open");
+        try {
+            for (Door door : doors) {
+                door.setDoorStatus("Open");
+            }
+        } catch (Exception e) {
+            log.error("Error opening doors: {}", e.getMessage());
+            throw new RuntimeException(e);
         }
     }
+
     public void generateReport() {
-        System.out.println("SpyBase Report:");
-        System.out.println("Location: " + location);
-        System.out.println("Classification: " + classification);
-        System.out.println("Alias: " + alias);
-        System.out.println("Doors:"); doors.forEach(System.out::println);
-        System.out.println("Agents:"); agents.forEach(System.out::println);
+        try {
+            System.out.println("SpyBase Report:");
+            System.out.println("Location: " + location);
+            System.out.println("Classification: " + classification);
+            System.out.println("Alias: " + alias);
+            System.out.println("Doors:");
+            doors.forEach(System.out::println);
+            System.out.println("Agents:");
+            agents.forEach(System.out::println);
+        } catch (Exception e) {
+            log.error("Error generating report: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
-    public void printAgentDetailsFormatted(){
-        System.out.println("Agent Details:");
-        for (Agent agent : agents) {
-            System.out.printf("UserName: %s\nPassword: %s\nCodeName: %s\nSpecialization: %s\nUnitName: %s\n",
-                agent.getUserName(), agent.getPassword(), agent.getCodeName(), agent.getSpecialization(), agent.getUnitName());
+    public void printAgentDetailsFormatted() {
+        try {
+            System.out.println("Agent Details:");
+            for (Agent agent : agents) {
+                System.out.printf("UserName: %s\nPassword: %s\nCodeName: %s\nSpecialization: %s\nUnitName: %s\n",
+                        agent.getUserName(), agent.getPassword(), agent.getCodeName(), agent.getSpecialization(), agent.getUnitName());
 
-    }
+            }
+        } catch (Exception e) {
+            log.error("Error printing agent details: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     public void printSpyBaseDetailsFormatted() {
-        System.out.printf("SpyBase Details:\nLocation: %s\nClassification: %s\nAlias: %s\n", location, classification, alias);
-        System.out.println("Doors:");
-        for (Door door : doors) {
-            System.out.println(door);
+        try {
+            System.out.printf("SpyBase Details:\nLocation: %s\nClassification: %s\nAlias: %s\n", location, classification, alias);
+            System.out.println("Doors:");
+            for (Door door : doors) {
+                System.out.println(door);
+            }
+            System.out.println("Agents:");
+            printAgentDetailsFormatted();
+        } catch (Exception e) {
+            log.error("Error printing spy base details: {}", e.getMessage());
+            throw new RuntimeException(e);
         }
-        System.out.println("Agents:");
-        printAgentDetailsFormatted();
 
     }
+
 
     @Override
     public String toString() {
