@@ -8,10 +8,6 @@ Welcome to the backend system for **Buy More Ops**, a fictional employee and sec
 - **Spring Boot**
 - **Spring Data JPA**
 - **MySQL**
-- **Spring Security (for BCrypt only, not enforcing security)**
-- **BCrypt password hashing**
-- **RESTful APIs**
-- **Lombok (for cleaner code)**
 
 ## 📦 Project Purpose
 
@@ -37,14 +33,11 @@ This project demonstrates the following concepts:
 
 - **User** → Represents all system users
 - **Employee** → Extends a user to represent Buy More staff
-- **Agent** → Represents government operatives, Extends a User 
+- **Agent** → Represents government operatives, Extends a User, can have many gadgets, be assigned to many missions
 - **Department** → Has many Employees (one-to-many)
 - **Missions** → Can involve many Agents (many-to-many)
-
-
-> - One-to-Many (Department → Employees)
-> - One To Many ( HQ -> Doors)
-> - Many-to-Many (Agent ↔ Missions)
+- **Spybase** -> can have meany agents assigned to it and it can have many doors
+- **Store** -> Can have many employees and many departments
 
 ## 🧪 Example API Endpoints
 
