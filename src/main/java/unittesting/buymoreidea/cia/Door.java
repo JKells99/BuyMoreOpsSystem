@@ -40,10 +40,7 @@ public class Door {
 
     @Override
     public String toString() {
-        return "Door{" +
-                "doorNumber=" + doorNumber +
-                ", doorType='" + doorType + '\'' +
-                ", doorStatus='" + doorStatus + '\'' +
-                '}';
+        return "Door: Door Number: " + doorNumber + " " +
+                "Door Status: " + doorStatus;
     }
 }

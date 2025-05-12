@@ -1,9 +1,13 @@
 package unittesting.buymoreidea.cia;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpyBase {
+    private static final Logger log = LoggerFactory.getLogger(SpyBase.class);
     private String location;
     private String classification;
     private String alias;
@@ -101,6 +105,7 @@ public class SpyBase {
     }
     public void closeAllDoors() {
         for (Door door : doors) {
+            log.info("Closing door #{}", door.getDoorNumber());
             door.setDoorStatus("Closed");
         }
     }
@@ -116,6 +121,26 @@ public class SpyBase {
         System.out.println("Alias: " + alias);
         System.out.println("Doors:"); doors.forEach(System.out::println);
         System.out.println("Agents:"); agents.forEach(System.out::println);
+    }
+
+    public void printAgentDetailsFormatted(){
+        System.out.println("Agent Details:");
+        for (Agent agent : agents) {
+            System.out.printf("UserName: %s\nPassword: %s\nCodeName: %s\nSpecialization: %s\nUnitName: %s\n",
+                agent.getUserName(), agent.getPassword(), agent.getCodeName(), agent.getSpecialization(), agent.getUnitName());
+
+    }
+    }
+
+    public void printSpyBaseDetailsFormatted() {
+        System.out.printf("SpyBase Details:\nLocation: %s\nClassification: %s\nAlias: %s\n", location, classification, alias);
+        System.out.println("Doors:");
+        for (Door door : doors) {
+            System.out.println(door);
+        }
+        System.out.println("Agents:");
+        printAgentDetailsFormatted();
+
     }
 
     @Override

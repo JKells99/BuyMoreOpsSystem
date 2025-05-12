@@ -17,6 +17,7 @@ public class Store {
     private List<Employee> employees = new ArrayList<>();
     private List<InventoryItem> inventoryItems = new ArrayList<>();
     private SpyBase spyBase;
+    Schedule schedule = new Schedule();
 
     public Store(String storeName, String storeAddress, String storePhoneNumber) {
         this.storeName = storeName;
@@ -46,6 +47,14 @@ public class Store {
 
     public void setSpyBase(SpyBase spyBase) {
         this.spyBase = spyBase;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 
     public void addDepartment(Department department) {
@@ -89,6 +98,26 @@ public class Store {
 
     private void validateNotNull(Object obj, String name) {
         if (obj == null) throw new IllegalArgumentException(name + " cannot be null");
+    }
+    public void checkItemStock(String itemName) {
+        for (InventoryItem item : inventoryItems) {
+            if (item.getItemName().equals(itemName)) {
+                System.out.println("Item " + itemName + " is in stock with quantity " + item.getItemQuantity());
+                log.info("Item {} is in stock with quantity {}", itemName, item.getItemQuantity());
+                return;
+            }
+        }
+        log.warn("Item {} is not in stock", itemName);
+    }
+    public void checkEmployeeContactInfo(String employeeName, String employeeLastName) {
+        for (Employee employee : employees) {
+            if (employee.getEmployeeFirstName().equals(employeeName) && employee.getEmployeeLastName().equals(employeeLastName)) {
+                System.out.println("Employee " + employeeName + " contact info: " + employee.getEmployeePhoneNumber());
+                log.info("Employee {} contact info: {}", employeeName , "Has Been Accessed");
+                return;
+            }
+        }
+        log.warn("Employee {} not found", employeeName);
     }
 
     @Override

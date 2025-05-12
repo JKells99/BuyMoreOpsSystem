@@ -50,16 +50,12 @@ public class Agent extends User {
     }
 
 
-
-
-
     @Override
     public String toString() {
         return "Agent{" +
-                "codeName='" + codeName + '\'' +
-                ", specialization='" + specialization + '\'' +
+                "specialization='" + specialization + '\'' +
                 ", unitName='" + unitName + '\'' +
-                '}';
+                "} " + super.toString();
     }
 }
 
