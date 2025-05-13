@@ -13,6 +13,7 @@ public class SpyBase {
     private String alias;
     private List<Door> doors;
     private List<Agent> agents;
+    private List<Gadget> gadgets;
 
     public SpyBase(String location, String classification, String alias) {
         this.location = location;
@@ -20,6 +21,7 @@ public class SpyBase {
         this.alias = alias;
         this.doors = new ArrayList<Door>();
         this.agents = new ArrayList<Agent>();
+        this.gadgets = new ArrayList<Gadget>();
     }
 
     public SpyBase() {
@@ -63,6 +65,14 @@ public class SpyBase {
 
     public void setAgents(List<Agent> agents) {
         this.agents = agents;
+    }
+
+    public List<Gadget> getGadgets() {
+        return gadgets;
+    }
+
+    public void setGadgets(List<Gadget> gadgets) {
+        this.gadgets = gadgets;
     }
 
     // method to add a door
@@ -148,6 +158,56 @@ public class SpyBase {
             }
         } catch (Exception e) {
             log.error("Error opening doors: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+    public void addNewgadget(Gadget gadget) {
+        try {
+            if (gadget == null) {
+                throw new IllegalArgumentException("Gadget cannot be null");
+            }
+            if (gadgets.contains(gadget)) {
+                throw new IllegalArgumentException("Gadget already exists");
+            }
+            gadgets.add(gadget);
+            log.info("Added Gadget: {}", gadget);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void printGadgetStockReport() {
+        try {
+            StringBuilder report = new StringBuilder();
+            for (Gadget gadget : gadgets) {
+                report.append("--------------------------------------\n");
+                report.append("Gadget Name: ").append(gadget.getGadgetName()).append("\n");
+                report.append("Gadget Type: ").append(gadget.getGadgetType()).append("\n");
+                report.append("Gadget Description: ").append(gadget.getGadgetDescription()).append("\n");
+                report.append("Gadget Stock Count: ").append(gadget.getGadgetStockCount()).append("\n");
+                report.append("Gadget Classification: ").append(gadget.getGadgetClassification()).append("\n");
+                report.append("-------------------------------------------------\n");
+
+
+            }
+            System.out.println(report);
+        } catch (Exception e) {
+            log.error("Error printing gadget stock report: {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void getitemStockCountByName(String gadgetName){
+        try {
+            for (Gadget gadget : gadgets) {
+                if (gadget.getGadgetName().equals(gadgetName)) {
+                    System.out.println("Item " + gadgetName + " is in stock with quantity " + gadget.getGadgetStockCount());
+                    log.info("Item {} is in stock with quantity {}", gadgetName, gadget.getGadgetStockCount());
+                    return;
+                }
+            }
+            System.out.println("Item " + gadgetName + " not found");
+        } catch (Exception e) {
+            log.error("Error getting item stock count: {}", e.getMessage());
             throw new RuntimeException(e);
         }
     }

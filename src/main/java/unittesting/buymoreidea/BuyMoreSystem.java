@@ -31,7 +31,11 @@ public class BuyMoreSystem {
         spyBase.generateReport();
         spyBase.printSpyBaseDetailsFormatted();
 
-
+        // Gadgets
+        spyBase.addNewgadget(new Gadget("Gadget1", "Des",",Surveillance",3,"Test Phase"));
+        spyBase.addNewgadget(new Gadget("Gadget2", "Des",",Breaching",3,"Test Phase"));
+        spyBase.printGadgetStockReport();
+        spyBase.getitemStockCountByName("Gadget1");
         // Mission
         Mission mission = new Mission(1123, "Description of mission 1", "2023-10-01", "2023-10-31");
         mission.addAgent(new Agent("UserName", "Password", "Darude", "OPS", "STG"));
