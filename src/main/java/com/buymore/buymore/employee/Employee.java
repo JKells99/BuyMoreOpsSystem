@@ -1,9 +1,17 @@
-package unittesting.buymoreidea.buymore;
+package com.buymore.buymore.employee;
 
 
-import unittesting.buymoreidea.User;
+import com.buymore.user.User;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Employee extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long employeeId;
     private String employeeFirstName;
     private String employeeLastName;
     private String employeePhoneNumber;
@@ -14,6 +22,18 @@ public class Employee extends User {
 
     public Employee(String userName, String password, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
         super(userName, password);
+        this.employeeFirstName = employeeFirstName;
+        this.employeeLastName = employeeLastName;
+        this.employeePhoneNumber = employeePhoneNumber;
+        this.employeeEmail = employeeEmail;
+        this.employeeAddress = employeeAddress;
+        this.employeePosition = employeePosition;
+        this.employeeSalary = employeeSalary;
+    }
+
+    public Employee(String userName, String password, Long employeeId, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
+        super(userName, password);
+        this.employeeId = employeeId;
         this.employeeFirstName = employeeFirstName;
         this.employeeLastName = employeeLastName;
         this.employeePhoneNumber = employeePhoneNumber;
@@ -80,6 +100,16 @@ public class Employee extends User {
 
     public void setEmployeeSalary(double employeeSalary) {
         this.employeeSalary = employeeSalary;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     @Override

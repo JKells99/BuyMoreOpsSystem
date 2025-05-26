@@ -1,22 +1,22 @@
-package unittesting.buymoreidea.cia;
+package com.buymore.cia.gadget;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Gadget {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long gadgetId;
     private String gadgetName;
     private String gadgetDescription;
     private String gadgetType;
     private int gadgetStockCount;
     private String gadgetClassification;
 
-    public Gadget(String gadgetName, String gadgetDescription, String gadgetType, int gadgetStockCount, String gadgetClassification) {
-        this.gadgetName = gadgetName;
-        this.gadgetDescription = gadgetDescription;
-        this.gadgetType = gadgetType;
-        this.gadgetStockCount = gadgetStockCount;
-        this.gadgetClassification = gadgetClassification;
-    }
 
-    public Gadget() {
-    }
 
     public String getGadgetName() {
         return gadgetName;

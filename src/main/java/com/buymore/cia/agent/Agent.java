@@ -1,31 +1,43 @@
-package unittesting.buymoreidea.cia;
+package com.buymore.cia.agent;
 
-import unittesting.buymoreidea.User;
+import com.buymore.cia.gadget.Gadget;
+import com.buymore.user.User;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Agent extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long agentId;
     private String codeName;
 
     private String specialization;
 
     private String unitName;
-
+    @OneToMany
     private List<Gadget> listOfGadgets;
 
 
+    public Agent(String userName, String password, long agentId, String codeName, String specialization, String unitName) {
+        super(userName, password);
+        this.agentId = agentId;
+        this.codeName = codeName;
+        this.specialization = specialization;
+        this.unitName = unitName;
+        this.listOfGadgets = new ArrayList<>();
+    }
 
     public Agent(String userName, String password, String codeName, String specialization, String unitName) {
         super(userName, password);
         this.codeName = codeName;
         this.specialization = specialization;
         this.unitName = unitName;
-        this.listOfGadgets = new ArrayList<Gadget>();
-
+        this.listOfGadgets = new ArrayList<>();
     }
-
     public Agent() {
+        this.listOfGadgets = new ArrayList<>();
     }
 
     public List<Gadget> getListOfGadgets() {

@@ -1,23 +1,48 @@
-package unittesting.buymoreidea.buymore;
+package com.buymore.buymore.store;
 
+import com.buymore.buymore.employee.Employee;
+import com.buymore.buymore.schedule.Schedule;
+import com.buymore.buymore.department.Department;
+import com.buymore.buymore.inventory.InventoryItem;
+import jakarta.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import unittesting.buymoreidea.cia.SpyBase;
+import com.buymore.cia.spybase.SpyBase;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Store {
 
     private static final Logger log = LoggerFactory.getLogger(Store.class);
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long storeId;
     private String storeName;
     private String storeAddress;
     private String storePhoneNumber;
+    @OneToMany
     private List<Department> departments = new ArrayList<>();
+    @OneToMany
     private List<Employee> employees = new ArrayList<>();
+    @OneToMany
     private List<InventoryItem> inventoryItems = new ArrayList<>();
+    @OneToOne
     private SpyBase spyBase;
+    @OneToOne
     Schedule schedule = new Schedule();
+
+    public Store(Schedule schedule, SpyBase spyBase,  String storePhoneNumber, String storeAddress, String storeName, long storeId) {
+        this.schedule = schedule;
+        this.spyBase = spyBase;
+        this.inventoryItems = new ArrayList<>();
+        this.employees = new ArrayList<>();
+        this.departments = new ArrayList<>();
+        this.storePhoneNumber = storePhoneNumber;
+        this.storeAddress = storeAddress;
+        this.storeName = storeName;
+        this.storeId = storeId;
+    }
 
     public Store(String storeName, String storeAddress, String storePhoneNumber) {
         this.storeName = storeName;
@@ -27,6 +52,14 @@ public class Store {
     }
 
     public Store() {}
+
+    public long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(long storeId) {
+        this.storeId = storeId;
+    }
 
     public String getStoreName() { return storeName; }
     public void setStoreName(String storeName) { this.storeName = storeName; }

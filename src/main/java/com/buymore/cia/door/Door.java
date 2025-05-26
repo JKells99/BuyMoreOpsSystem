@@ -1,7 +1,15 @@
-package unittesting.buymoreidea.cia;
+package com.buymore.cia.door;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Door {
-    private int doorNumber;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long doorNumber;
     private String doorType;
     private String doorStatus;
 
@@ -14,11 +22,12 @@ public class Door {
     public Door() {
     }
 
-    public int getDoorNumber() {
+
+    public long getDoorNumber() {
         return doorNumber;
     }
 
-    public void setDoorNumber(int doorNumber) {
+    public void setDoorNumber(long doorNumber) {
         this.doorNumber = doorNumber;
     }
 
