@@ -1,13 +1,19 @@
-package unittesting.buymoreidea.cia;
+package com.buymore.cia.mission;
+
+import com.buymore.cia.agent.Agent;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Mission {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int missionId;
     private String missionName;
     private String missionDescription;
     private String missionStatus;
+    @OneToMany
     private List<Agent> agentsInvolved;
 
     public Mission(int missionId, String missionName, String missionDescription, String missionStatus) {
@@ -15,10 +21,19 @@ public class Mission {
         this.missionName = missionName;
         this.missionDescription = missionDescription;
         this.missionStatus = missionStatus;
-        this.agentsInvolved = new ArrayList<Agent>();
+        this.agentsInvolved = new ArrayList<>();
+    }
+
+    public Mission(String missionStatus, String missionDescription, String missionName) {
+        this.missionStatus = missionStatus;
+        this.missionDescription = missionDescription;
+        this.missionName = missionName;
+        this.agentsInvolved = new ArrayList<>();
     }
     public Mission() {
+        this.agentsInvolved = new ArrayList<>();
     }
+
 
     public int getMissionId() {
         return missionId;
@@ -58,23 +73,6 @@ public class Mission {
 
     public void setAgentsInvolved(List<Agent> agentsInvolved) {
         this.agentsInvolved = agentsInvolved;
-    }
-    public void addAgent(Agent agent) {
-        this.agentsInvolved.add(agent);
-    }
-    public void removeAgent(Agent agent) {
-        this.agentsInvolved.remove(agent);
-    }
-
-    public void printMissionDetails() {
-        System.out.println("Mission ID: " + missionId);
-        System.out.println("Mission Name: " + missionName);
-        System.out.println("Mission Description: " + missionDescription);
-        System.out.println("Mission Status: " + missionStatus);
-        System.out.println("Agents Involved: ");
-        for (Agent agent : agentsInvolved) {
-            System.out.println(agent);
-        }
     }
 
     @Override

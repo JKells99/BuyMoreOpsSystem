@@ -1,7 +1,16 @@
-package unittesting.buymoreidea.buymore;
+package com.buymore.buymore.inventory;
 
 
+import com.buymore.buymore.department.Department;
+import jakarta.persistence.*;
+
+@Entity
 public class InventoryItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long inventoryItemId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
     private String itemName;
     private String itemDescription;
@@ -17,6 +26,15 @@ public class InventoryItem {
     }
 
     public InventoryItem() {
+    }
+
+
+    public long getInventoryItemId() {
+        return inventoryItemId;
+    }
+
+    public void setInventoryItemId(long inventoryItemId) {
+        this.inventoryItemId = inventoryItemId;
     }
 
     public Department getDepartment() {
@@ -58,6 +76,7 @@ public class InventoryItem {
     public void setItemQuantity(int itemQuantity) {
         this.itemQuantity = itemQuantity;
     }
+
 
     @Override
     public String toString() {

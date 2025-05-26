@@ -1,28 +1,32 @@
-package unittesting.buymoreidea.buymore;
+package com.buymore.buymore.schedule;
+
+import com.buymore.buymore.employee.Employee;
+import jakarta.persistence.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-
+@Entity
 public class Shift {
     // Each shoft will have a start time and end time
     // GOnna have a employee assigned to it
     // gonna have a total time
-    int shiftId;
-    LocalDateTime startTime;
-    LocalDateTime endTime;
-    Employee employee;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long shiftId;
+    private LocalDateTime startTime;
+   private  LocalDateTime endTime;
+   @OneToOne(fetch = FetchType.LAZY)
+   private Employee employee;
 
-    public Shift(LocalDateTime startTime, LocalDateTime endTime, Employee employee) {
+
+    public Shift(long shiftId, LocalDateTime startTime, LocalDateTime endTime, Employee employee) {
+        this.shiftId = shiftId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.employee = employee;
     }
 
     public Shift() {
-    }
-
-    public int getShiftId() {
-        return shiftId;
     }
 
     public void setShiftId(int shiftId) {
@@ -52,12 +56,13 @@ public class Shift {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-    public Duration getDurationOfShift() {
-        if (startTime != null && endTime != null) {
-            return Duration.between(startTime, endTime);
-        } else {
-            return Duration.ZERO;
-        }
+
+    public long getShiftId() {
+        return shiftId;
+    }
+
+    public void setShiftId(long shiftId) {
+        this.shiftId = shiftId;
     }
 
     @Override

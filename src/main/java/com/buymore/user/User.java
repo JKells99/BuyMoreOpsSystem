@@ -1,4 +1,4 @@
-package unittesting.buymoreidea;
+package com.buymore.user;
 
 import org.mindrot.jbcrypt.BCrypt;
 
