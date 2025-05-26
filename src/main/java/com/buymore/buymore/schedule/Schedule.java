@@ -21,6 +21,7 @@ public class Schedule {
     }
 
     public Schedule() {
+        this.listOfShifts = new ArrayList<>();
 
     }
 
