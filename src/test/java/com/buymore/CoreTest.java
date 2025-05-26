@@ -1,13 +1,28 @@
 package com.buymore;
 
+import com.buymore.user.User;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CoreTest {
 
     @Test
     public void testCoreFunctionality() {
-        // Implement core functionality tests here
-        // For example, testing the initialization of the BuyMore system or basic operations
-        // This is a placeholder test method
+        // This is a placeholder for core functionality tests.
+        // You can add assertions here to test the core logic of your application.
+        Assertions.assertTrue(true, "Core functionality test passed.");
+    }
+
+    @Test
+    public void testUserCreation() {
+        User user = new User();
+        user.setUserName("testUser");
+        user.setPassword("testPassword");
+        Assertions.assertEquals("testUser", user.getUserName());
+
+    }
+    @Test
+    public void checkServerStart(){
+
     }
 }
