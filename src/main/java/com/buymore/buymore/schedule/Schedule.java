@@ -10,6 +10,7 @@ import com.buymore.buymore.employee.Employee;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
@@ -18,17 +19,24 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long scheduleId;
 
-    @OneToMany()
-    private List<Shift> listOfShifts;
+    private LocalDateTime startDateOfSchedule = LocalDateTime.now();
 
-    public Schedule(long scheduleId) {
+    @OneToMany()
+    private List<Shift> listOfShifts = new ArrayList<>();
+
+    public Schedule(long scheduleId, LocalDateTime startDateOfSchedule) {
         this.scheduleId = scheduleId;
+        this.startDateOfSchedule = startDateOfSchedule;
         this.listOfShifts = new ArrayList<>();
     }
 
-    public Schedule() {
+    public Schedule(LocalDateTime startDateOfSchedule) {
+        this.startDateOfSchedule = startDateOfSchedule;
         this.listOfShifts = new ArrayList<>();
 
+    }
+
+    public Schedule() {
     }
 
     public long getScheduleId() {

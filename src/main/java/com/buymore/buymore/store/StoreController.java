@@ -29,9 +29,9 @@ public class StoreController {
         return new ResponseEntity<>(storeService.getStoreById(id), HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStoreById(@PathVariable Long id) {
+    public ResponseEntity<String> deleteStoreById(@PathVariable Long id) {
         storeService.deleteStoreById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>("Store with id"  + id + " has been deleted",HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

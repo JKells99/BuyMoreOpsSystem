@@ -10,8 +10,9 @@ public class InventoryItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long inventoryItemId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Department department;
+
     private String itemName;
     private String itemDescription;
     private double itemPrice;
