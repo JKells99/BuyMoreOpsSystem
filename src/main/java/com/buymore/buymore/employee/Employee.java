@@ -10,22 +10,20 @@ import java.util.List;
 
 @Entity
 public class Employee extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employeeId;
+
     private String employeeFirstName;
     private String employeeLastName;
     private String employeePhoneNumber;
+    @Column(unique = true)
     private String employeeEmail;
     private String employeeAddress;
     private String employeePosition;
     private double employeeSalary;
-    @OneToMany
+    @ManyToMany
     private List< Department> departmentsWorkedInStore;
 
-    public Employee(String userName, String password, String systemRole, Long employeeId, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
+    public Employee(String userName, String password, String systemRole, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
         super(userName, password, systemRole);
-        this.employeeId = employeeId;
         this.employeeFirstName = employeeFirstName;
         this.employeeLastName = employeeLastName;
         this.employeePhoneNumber = employeePhoneNumber;
@@ -35,17 +33,7 @@ public class Employee extends User {
         this.employeeSalary = employeeSalary;
         this.departmentsWorkedInStore = new ArrayList<>();
     }
-    public Employee(Long employeeId, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
-        this.employeeId = employeeId;
-        this.employeeFirstName = employeeFirstName;
-        this.employeeLastName = employeeLastName;
-        this.employeePhoneNumber = employeePhoneNumber;
-        this.employeeEmail = employeeEmail;
-        this.employeeAddress = employeeAddress;
-        this.employeePosition = employeePosition;
-        this.employeeSalary = employeeSalary;
-        this.departmentsWorkedInStore = new ArrayList<>();
-    }
+
 
     public Employee() {
         this.departmentsWorkedInStore = new ArrayList<>();
@@ -115,15 +103,6 @@ public class Employee extends User {
         this.employeeSalary = employeeSalary;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
 
     @Override
     public String toString() {
@@ -135,7 +114,7 @@ public class Employee extends User {
                 ", employeeAddress='" + employeeAddress + '\'' +
                 ", employeePosition='" + employeePosition + '\'' +
                 ", employeeSalary=" + employeeSalary +
-                '}';
+                ", departmentsWorkedInStore=" + departmentsWorkedInStore +
+                "} " + super.toString();
     }
-
 }
