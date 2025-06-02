@@ -29,7 +29,12 @@ public class Shift {
     public Shift() {
     }
 
-    public void setShiftId(int shiftId) {
+
+    public long getShiftId() {
+        return shiftId;
+    }
+
+    public void setShiftId(long shiftId) {
         this.shiftId = shiftId;
     }
 
@@ -55,14 +60,6 @@ public class Shift {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }
-
-    public long getShiftId() {
-        return shiftId;
-    }
-
-    public void setShiftId(long shiftId) {
-        this.shiftId = shiftId;
     }
 
     @Override

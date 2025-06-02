@@ -5,15 +5,18 @@ import org.mindrot.jbcrypt.BCrypt;
 public class User {
     private String userName;
     private String password;
+    private String systemRole;
 
-    public User(String userName, String password) {
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+    public User(String userName, String password, String systemRole) {
         this.userName = userName;
-        this.password = hashedPassword;
+        this.password = password;
+        this.systemRole = systemRole;
     }
 
     public User() {
     }
+
+
 
     public String getUserName() {
         return userName;
@@ -29,5 +32,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSystemRole() {
+        return systemRole;
+    }
+
+    public void setSystemRole(String systemRole) {
+        this.systemRole = systemRole;
     }
 }

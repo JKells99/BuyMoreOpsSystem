@@ -28,27 +28,26 @@ public class Store {
     @OneToMany
     private List<InventoryItem> inventoryItems = new ArrayList<>();
     @OneToOne
-    private SpyBase spyBase;
-    @OneToOne
-    Schedule schedule = new Schedule();
+    private SpyBase spyBase = new SpyBase();
+    @OneToMany
+    private List<Schedule> schedules = new ArrayList<>();
 
-    public Store(Schedule schedule, SpyBase spyBase,  String storePhoneNumber, String storeAddress, String storeName, long storeId) {
-        this.schedule = schedule;
-        this.spyBase = spyBase;
+    public Store(long storeId,String storePhoneNumber, String storeAddress, String storeName) {
+        this.storeId = storeId;
         this.inventoryItems = new ArrayList<>();
         this.employees = new ArrayList<>();
         this.departments = new ArrayList<>();
         this.storePhoneNumber = storePhoneNumber;
         this.storeAddress = storeAddress;
         this.storeName = storeName;
-        this.storeId = storeId;
+
     }
 
     public Store(String storeName, String storeAddress, String storePhoneNumber) {
         this.storeName = storeName;
         this.storeAddress = storeAddress;
         this.storePhoneNumber = storePhoneNumber;
-        this.spyBase = new SpyBase();
+
     }
 
     public Store() {}
@@ -59,6 +58,14 @@ public class Store {
 
     public void setStoreId(long storeId) {
         this.storeId = storeId;
+    }
+
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 
     public String getStoreName() { return storeName; }
@@ -80,77 +87,6 @@ public class Store {
 
     public void setSpyBase(SpyBase spyBase) {
         this.spyBase = spyBase;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    public void addDepartment(Department department) {
-        validateNotNull(department, "Department");
-        if (departments.contains(department)) throw new IllegalArgumentException("Department already exists");
-        log.info("Adding department {}", department.getDepartmentName());
-        departments.add(department);
-    }
-
-    public void removeDepartment(Department department) {
-        validateNotNull(department, "Department");
-        log.info("Removing department {}", department);
-        departments.remove(department);
-    }
-
-    public void addEmployee(Employee employee) {
-        validateNotNull(employee, "Employee");
-        if (employees.contains(employee)) throw new IllegalArgumentException("Employee already exists");
-        log.info("Adding employee {}", employee);
-        employees.add(employee);
-    }
-
-    public void removeEmployee(Employee employee) {
-        validateNotNull(employee, "Employee");
-        log.info("Removing employee {}", employee);
-        employees.remove(employee);
-    }
-
-    public void addInventoryItem(InventoryItem inventoryItem) {
-        validateNotNull(inventoryItem, "Inventory item");
-        if (inventoryItems.contains(inventoryItem)) throw new IllegalArgumentException("Inventory item already exists");
-        log.info("Adding inventory item {}", inventoryItem.getItemName());
-        inventoryItems.add(inventoryItem);
-    }
-
-    public void removeInventoryItem(InventoryItem inventoryItem) {
-        validateNotNull(inventoryItem, "Inventory item");
-        log.info("Removing inventory item {}", inventoryItem);
-        inventoryItems.remove(inventoryItem);
-    }
-
-    private void validateNotNull(Object obj, String name) {
-        if (obj == null) throw new IllegalArgumentException(name + " cannot be null");
-    }
-    public void checkItemStock(String itemName) {
-        for (InventoryItem item : inventoryItems) {
-            if (item.getItemName().equals(itemName)) {
-                System.out.println("Item " + itemName + " is in stock with quantity " + item.getItemQuantity());
-                log.info("Item {} is in stock with quantity {}", itemName, item.getItemQuantity());
-                return;
-            }
-        }
-        log.warn("Item {} is not in stock", itemName);
-    }
-    public void checkEmployeeContactInfo(String employeeName, String employeeLastName) {
-        for (Employee employee : employees) {
-            if (employee.getEmployeeFirstName().equals(employeeName) && employee.getEmployeeLastName().equals(employeeLastName)) {
-                System.out.println("Employee " + employeeName + " contact info: " + employee.getEmployeePhoneNumber());
-                log.info("Employee {} contact info: {}", employeeName , "Has Been Accessed");
-                return;
-            }
-        }
-        log.warn("Employee {} not found", employeeName);
     }
 
     @Override

@@ -26,6 +26,7 @@ public class InventoryItem {
     }
 
     public InventoryItem() {
+        this.department = null;
     }
 
 

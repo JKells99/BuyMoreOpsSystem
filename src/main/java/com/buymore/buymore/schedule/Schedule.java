@@ -1,4 +1,10 @@
 package com.buymore.buymore.schedule;
+///  For schedules I will need to think of a way to link thew // shifts to the employees and the store
+// When making a schedule, I will need to know the store and the employees that are available for that schedule
+// I will also need to know the date of the schedule, so I can link it to the shifts
+// Maybe will create a randomizer to create the shifts for the employees then make schedule based on that
+// create shifts at random times then assign random employees that are in the system to those shifts
+// When shifts are created, they will be linked to the schedule by date of schedule, shifts that fall within 7 days will be added to that schedule
 
 import com.buymore.buymore.employee.Employee;
 import jakarta.persistence.*;
