@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 public class Agent extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long agentId;
+
     private String codeName;
 
     private String specialization;
@@ -20,21 +18,14 @@ public class Agent extends User {
     private List<Gadget> listOfGadgets;
 
 
-    public Agent(String userName, String password, String systemRole, long agentId, String codeName, String specialization, String unitName) {
+    public Agent(String userName, String password, String systemRole, String codeName, String specialization, String unitName) {
         super(userName, password, systemRole);
-        this.agentId = agentId;
         this.codeName = codeName;
         this.specialization = specialization;
         this.unitName = unitName;
         this.listOfGadgets = new ArrayList<>();
     }
-    public Agent(long agentId, String codeName, String specialization, String unitName) {
-        this.agentId = agentId;
-        this.codeName = codeName;
-        this.specialization = specialization;
-        this.unitName = unitName;
-        this.listOfGadgets = new ArrayList<>();
-    }
+
 
     public Agent() {
         this.listOfGadgets = new ArrayList<>();

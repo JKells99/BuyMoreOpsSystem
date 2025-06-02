@@ -1,8 +1,14 @@
 package com.buymore.user;
 
+import jakarta.persistence.*;
 import org.mindrot.jbcrypt.BCrypt;
-
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long userId;
+
+    @Column(unique = true)
     private String userName;
     private String password;
     private String systemRole;
@@ -40,5 +46,15 @@ public class User {
 
     public void setSystemRole(String systemRole) {
         this.systemRole = systemRole;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", systemRole='" + systemRole + '\'' +
+                '}';
     }
 }
