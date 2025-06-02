@@ -1,11 +1,12 @@
 package com.buymore.buymore.employee;
 
 
+import com.buymore.buymore.department.Department;
 import com.buymore.user.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Employee extends User {
@@ -19,20 +20,11 @@ public class Employee extends User {
     private String employeeAddress;
     private String employeePosition;
     private double employeeSalary;
+    @OneToMany
+    private List< Department> departmentsWorkedInStore;
 
-    public Employee(String userName, String password, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
-        super(userName, password);
-        this.employeeFirstName = employeeFirstName;
-        this.employeeLastName = employeeLastName;
-        this.employeePhoneNumber = employeePhoneNumber;
-        this.employeeEmail = employeeEmail;
-        this.employeeAddress = employeeAddress;
-        this.employeePosition = employeePosition;
-        this.employeeSalary = employeeSalary;
-    }
-
-    public Employee(String userName, String password, Long employeeId, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
-        super(userName, password);
+    public Employee(String userName, String password, String systemRole, Long employeeId, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
+        super(userName, password, systemRole);
         this.employeeId = employeeId;
         this.employeeFirstName = employeeFirstName;
         this.employeeLastName = employeeLastName;
@@ -41,9 +33,30 @@ public class Employee extends User {
         this.employeeAddress = employeeAddress;
         this.employeePosition = employeePosition;
         this.employeeSalary = employeeSalary;
+        this.departmentsWorkedInStore = new ArrayList<>();
+    }
+    public Employee(Long employeeId, String employeeFirstName, String employeeLastName, String employeePhoneNumber, String employeeEmail, String employeeAddress, String employeePosition, double employeeSalary) {
+        this.employeeId = employeeId;
+        this.employeeFirstName = employeeFirstName;
+        this.employeeLastName = employeeLastName;
+        this.employeePhoneNumber = employeePhoneNumber;
+        this.employeeEmail = employeeEmail;
+        this.employeeAddress = employeeAddress;
+        this.employeePosition = employeePosition;
+        this.employeeSalary = employeeSalary;
+        this.departmentsWorkedInStore = new ArrayList<>();
     }
 
     public Employee() {
+        this.departmentsWorkedInStore = new ArrayList<>();
+    }
+
+    public List<Department> getDepartmentsWorkedInStore() {
+        return departmentsWorkedInStore;
+    }
+
+    public void setDepartmentsWorkedInStore(List<Department> departmentsWorkedInStore) {
+        this.departmentsWorkedInStore = departmentsWorkedInStore;
     }
 
     public String getEmployeeFirstName() {
